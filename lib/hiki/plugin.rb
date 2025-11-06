@@ -336,43 +336,43 @@ module Hiki
       end
     end
 
-    def add_header_proc(block = Proc.new)
+    def add_header_proc(&block)
       @header_procs << block
     end
 
-    def add_footer_proc(block = Proc.new)
+    def add_footer_proc(&block)
       @footer_procs << block
     end
 
-    def add_update_proc(block = Proc.new)
+    def add_update_proc(&block)
       @update_procs << block
     end
 
-    def add_delete_proc(block = Proc.new)
+    def add_delete_proc(&block)
       @delete_procs << block
     end
 
-    def add_body_enter_proc(block = Proc.new)
+    def add_body_enter_proc(&block)
       @body_enter_procs << block
     end
 
-    def add_page_attribute_proc(block = Proc.new)
+    def add_page_attribute_proc(&block)
       @page_attribute_procs << block
     end
 
-    def add_body_leave_proc(block = Proc.new)
+    def add_body_leave_proc(&block)
       @body_leave_procs << block
     end
 
-    def add_edit_proc(block = Proc.new)
+    def add_edit_proc(&block)
       @edit_procs << block
     end
 
-    def add_form_proc(block = Proc.new)
+    def add_form_proc(&block)
       @form_procs << block
     end
 
-    def add_menu_proc(block = Proc.new)
+    def add_menu_proc(&block)
       @menu_procs << block
     end
 
@@ -384,7 +384,7 @@ module Hiki
       nil
     end
 
-    def add_conf_proc(key, label, block = Proc.new)
+    def add_conf_proc(key, label, &block)
       return unless @mode =~ /^(conf|saveconf)$/
       @conf_keys << key unless @conf_keys.index(key)
       @conf_procs[key] = [label, block]
