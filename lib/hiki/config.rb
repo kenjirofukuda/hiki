@@ -130,6 +130,11 @@ module Hiki
     def load(config_path = "hikiconf.rb")
       @options = {}
       eval(File.open(config_path){|f| f.read }.untaint, binding, "(#{config_path})", 1)
+      if true
+        debug = Hash.new
+        debug[:data_path] = @data_path  
+        STDERR.puts debug
+      end
       format_error if $data_path
 
       raise "No @data_path variable." unless @data_path

@@ -33,7 +33,7 @@ module Hiki
         if exist?(page)
           return nil if md5 != md5hex(page)
           if update_timestamp
-            FileUtils.copy(filename, backupdir(page), { preserve: true })
+            FileUtils.copy(filename, backupdir(page), preserve: true)
           end
         end
         create_info_default(page) unless info_exist?(page)
@@ -50,7 +50,7 @@ module Hiki
       def unlink(page)
         if exist?(page)
           begin
-            FileUtils.copy(textdir(page), backupdir(page), { preserve: true })
+            FileUtils.copy(textdir(page), backupdir(page), preserve: true)
             delete_info(page)
             File.unlink(textdir(page))
           rescue

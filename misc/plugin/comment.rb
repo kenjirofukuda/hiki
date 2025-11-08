@@ -2,10 +2,10 @@
 
 # modified by yoshimi.
 
-add_body_enter_proc(Proc.new do
+add_body_enter_proc {
   @comment_num = 0
   ""
-end)
+}
 
 def comment(cols = 60, style = 0)
   return '' if @conf.use_session && !@session_id
