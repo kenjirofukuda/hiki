@@ -1,6 +1,6 @@
 #! /usr/bin/env ruby
 
-$LOAD_PATH.unshift "."
+$LOAD_PATH.unshift File.dirname(File.expand_path(__FILE__))
 
 require "optparse"
 require "pathname"
@@ -10,6 +10,9 @@ require "nkf"
 require "hiki/util"
 require "hiki/config"
 require "ptstore"
+require "logger"
+
+$logger = Logger.new("/tmp/hiki-convert.log")
 
 FILE_NAME_MAX_SIZE = 255
 
@@ -29,7 +32,8 @@ def convert_info_db(data_path, input_encoding, output_encoding, nkf)
       d_new = Hiki::Util.escape(encode(Hiki::Util.unescape(d),
                                        input_encoding, output_encoding, nkf))
       db[d_new] = db[d]
-      db.delete d if d_new != d
+      # NOTE: don't delete this timing. after reference to old_page
+      # db.delete d if d_new != d
     end
     db.commit
   end
@@ -73,6 +77,10 @@ def convert(data_path, database_class, input_encoding, output_encoding, nkf)
       db.unlink(old_page)
       db.store(new_page, new_text, Digest::MD5.hexdigest(old_text))
       db.set_last_update(new_page, last_update)
+      last_update2 = db.get_last_update(new_page)
+      if last_update != last_update2
+        $logger.debug "Update Error: #{new_page} be: #{last_update} but: #{last_update2}"
+      end
       puts " OK."
     rescue StandardError => ex
       puts " NG."
