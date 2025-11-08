@@ -1,0 +1,17 @@
+#+title: hiki
+#+author: kenjirofukuda@gmail.com
+#+options: toc:nil num:nil ^:nil ^:{}
+#+HTML_HEAD_EXTRA: <style> .figure p {text-align: left;}</style>
+#+HTML_HEAD_EXTRA: <script src="https://cdn.jsdelivr.net/npm/mermaid@11.12.0/dist/mermaid.min.js"></script>
+
+このフォークはサポートが打ち切られた Hikifarm を UTF-8 で運用できるように改良したものです。
+
+実装はかなり汚く、ただ動けばよいという程度の修正です。
+Rubyに精通された方が、正しく実装されることを望みます。
+
+需要は少ないと思われますが、巨大なフレームワークを用いた CMS に飽きた方がレトロ感に酔いしれて使う程度が吉かと。
+
+少なくとも修正を通じてrubyを楽しんでいます。
+
+
+
